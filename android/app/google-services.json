@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "802773261987",
+    "project_id": "cameo-coffee",
+    "storage_bucket": "cameo-coffee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802773261987:android:2f53428e6a7a4133dc2916",
+        "android_client_info": {
+          "package_name": "com.example.coffee_cameo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802773261987-4kh8d8qh72t24m9cea49p7slsur0ah55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1-iXm8PGApl4eRD0yYP036xaa5UPqJl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802773261987-4kh8d8qh72t24m9cea49p7slsur0ah55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
