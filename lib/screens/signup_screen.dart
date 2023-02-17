@@ -2,15 +2,16 @@ import 'package:coffee_cameo/components/Buttons.dart';
 import 'package:coffee_cameo/util/constants.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _passwordVisible = false;
+  bool _confirmPasswordVisible = false;
 
   void _togglePasswordVisible() {
     setState(() {
@@ -18,15 +19,20 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  void _toggleConfPasswordVisible() {
+    setState(() {
+      _confirmPasswordVisible = !_confirmPasswordVisible;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBgColor,
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: MediaQuery
-                .of(context)
-                .size
-                .height / 10, horizontal: 50.0),
+            vertical: MediaQuery.of(context).size.height / 10,
+            horizontal: 50.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,28 +40,19 @@ class _LoginScreenState extends State<LoginScreen> {
             Center(
               child: RichText(
                 text: TextSpan(
-                  text: 'Welcome,\n',
-                  children: [
-                    TextSpan(
-                      text: 'happy to have you back!',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .headlineSmall
-                    ),
-                  ],
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .headlineLarge
-                ),
+                    text: 'Hello there,\n',
+                    children: [
+                      TextSpan(
+                          text: 'Excited to work with you!',
+                          style: Theme.of(context).textTheme.headlineSmall),
+                    ],
+                    style: Theme.of(context).textTheme.headlineLarge),
                 textAlign: TextAlign.center,
               ),
             ),
+            //todo: use validator
             Column(
               children: [
-                //todo: use validator
-
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
@@ -81,46 +78,46 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.all(0)),
-                    ),
-                    onPressed: () {
-                      // todo: navigation for forgot password
-                    },
-                    child: const Text(
-                      'Forgot password?',
-                      style: TextStyle(decoration: TextDecoration.underline),
+                const SizedBox(height: 10),
+                TextFormField(
+                  obscureText: _confirmPasswordVisible,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: 'Confirm Password',
+                    suffixIcon: IconButton(
+                      onPressed: _toggleConfPasswordVisible,
+                      icon: Icon(_confirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
               ],
             ),
-            PrimaryButton(onClick: () {
-              //todo: add authentication
-              // navigate to Home and remove all screens from stack - make Home
-              // the bottom/base stack
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  kHomeScreen, (route) => false);
 
-            }, text: 'Log In'),
+            PrimaryButton(
+                onClick: () {
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil(kHomeScreen, (route) => false);
+                },
+                text: 'Sign Up'),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Don't have an account? "),
+                const Text("Already have an account? "),
                 TextButton(
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                         const EdgeInsets.all(0)),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed(kSignUpScreen);
+                    Navigator.of(context).pushReplacementNamed(kLogInScreen);
                   },
                   child: const Text(
-                    "Sign up here.",
+                    "Log in here.",
                     style: TextStyle(decoration: TextDecoration.underline),
                   ),
                 ),

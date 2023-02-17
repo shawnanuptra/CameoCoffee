@@ -34,25 +34,29 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: [
                     TextSpan(
                       text: 'Coffee',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(color: kSecondaryColor),
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
                     ),
                   ],
-                  style: Theme.of(context)
-                      .textTheme
-                      .displaySmall
-                      ?.copyWith(color: kPrimaryColor)),
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        color: Theme.of(context).primaryColor,
+                      )),
             ),
             const SizedBox(
               height: 20,
             ),
             PrimaryButton(
-              onClick: () {},
+              onClick: () {
+                Navigator.of(context).pushNamed(kLogInScreen);
+              },
               text: 'Login',
             ),
-            SecondaryButton(onClick: () {}, text: 'Sign up')
+            SecondaryButton(
+                onClick: () {
+                  Navigator.of(context).pushNamed(kSignUpScreen);
+                },
+                text: 'Sign up')
           ],
         ),
       ),
