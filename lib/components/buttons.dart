@@ -14,7 +14,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: kButtonMargin),
       child: SizedBox(
         width: double.infinity,
         child: TextButton(
@@ -29,7 +29,7 @@ class PrimaryButton extends StatelessWidget {
           style: TextButton.styleFrom(
               backgroundColor: kPrimaryColor,
               foregroundColor: Colors.white,
-              minimumSize: const Size.fromHeight(50)),
+              minimumSize: const Size.fromHeight(kButtonHeight)),
         ),
       ),
     );
