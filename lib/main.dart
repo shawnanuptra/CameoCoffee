@@ -1,5 +1,5 @@
 import 'package:coffee_cameo/firebase_options.dart';
-import 'package:coffee_cameo/screens/welcome_screen.dart';
+import 'package:coffee_cameo/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.brown,
       ),
-      home: const LoginScreen(),
+      home: LoginScreen(),
     );
   }
 }
