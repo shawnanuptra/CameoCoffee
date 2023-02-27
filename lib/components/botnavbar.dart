@@ -6,41 +6,54 @@ class BotNavBar extends StatelessWidget {
   const BotNavBar({
     Key? key,
     required int selectedIndex,
-  }) : _selectedIndex = selectedIndex, super(key: key);
+  })  : _selectedIndex = selectedIndex,
+        super(key: key);
 
   final int _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
+
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      items: const [
+      items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined), label: 'Home'),
+            icon: (_selectedIndex == 0)
+                ? const Icon(Icons.home)
+                : const Icon(Icons.home_outlined),
+            label: 'Home'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.coffee_outlined), label: 'Menu'),
+            icon: (_selectedIndex == 1)
+                ? const Icon(Icons.coffee)
+                : const Icon(Icons.coffee_outlined),
+            label: 'Menu'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_outlined), label: 'Activity'),
+            icon: (_selectedIndex == 2)
+                ? const Icon(Icons.receipt)
+                : const Icon(Icons.receipt_outlined),
+            label: 'Activity'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined), label: 'Settings'),
+            icon: (_selectedIndex == 3)
+                ? const Icon(Icons.settings)
+                : const Icon(Icons.settings_outlined),
+            label: 'Settings'),
       ],
       currentIndex: _selectedIndex,
       onTap: (int index) {
         switch (index) {
-        // Home
+          // Home
           case 0:
-
             Navigator.of(context).pushReplacementNamed(kHomeScreen);
             break;
-        // Menu
+          // Menu
           case 1:
             Navigator.of(context).pushReplacementNamed(kMenuScreen);
             break;
-        // Activity
+          // Activity
           case 2:
             Navigator.of(context).pushReplacementNamed(kActivityScreen);
             break;
-        // Setting
+          // Setting
           case 3:
             Navigator.of(context).pushReplacementNamed(kSettingsScreen);
             break;
