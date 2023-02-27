@@ -15,3 +15,10 @@ const kWelcomeScreen = '/welcome';
 const kHomeScreen = '/home';
 const kSignUpScreen = '/signup';
 const kLogInScreen = '/login';
+const kMenuScreen = '/menu';
+const kActivityScreen = '/activity';
+const kSettingsScreen = '/settings';
+
+// Font names
+const kBodyFont = 'Quattrocento';
+const kTitleFont = 'DMSerifDisplay';

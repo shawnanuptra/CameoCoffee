@@ -1,6 +1,9 @@
 import 'package:coffee_cameo/firebase_options.dart';
+import 'package:coffee_cameo/screens/activity_screen.dart';
 import 'package:coffee_cameo/screens/home_screen.dart';
 import 'package:coffee_cameo/screens/login_screen.dart';
+import 'package:coffee_cameo/screens/menu_screen.dart';
+import 'package:coffee_cameo/screens/settings_screen.dart';
 import 'package:coffee_cameo/screens/signup_screen.dart';
 import 'package:coffee_cameo/screens/welcome_screen.dart';
 import 'package:coffee_cameo/util/constants.dart';
@@ -32,14 +35,14 @@ class MyApp extends StatelessWidget {
         ),
 
         // Default Font Family
-        fontFamily: 'Quattrocento',
+        fontFamily: kBodyFont,
 
         textTheme: const TextTheme(
           // for titles/logo work
           displaySmall: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            fontFamily: 'DMSerifDisplay',
+            fontFamily: kTitleFont,
           ),
           headlineLarge: TextStyle(fontWeight: FontWeight.bold),
         ).apply(bodyColor: Colors.black87, displayColor: Colors.black87),
@@ -58,9 +61,18 @@ class MyApp extends StatelessWidget {
           case "/signup":
             return MaterialPageRoute(
                 builder: (context) => const SignUpScreen());
+          case "/menu":
+            return MaterialPageRoute(
+                builder: (context) => const MenuScreen());
+          case "/activity":
+            return MaterialPageRoute(
+                builder: (context) => const ActivityScreen());
+          case "/settings":
+            return MaterialPageRoute(
+                builder: (context) => const SettingsScreen());
           default:
             return MaterialPageRoute(
-                builder: (context) => const WelcomeScreen());
+                builder: (context) => const HomeScreen());
         }
       },
       // home: HomeScreen(),
