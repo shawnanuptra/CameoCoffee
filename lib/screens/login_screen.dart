@@ -1,5 +1,6 @@
 import 'package:coffee_cameo/components/Buttons.dart';
 import 'package:coffee_cameo/util/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -10,6 +11,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final _auth = FirebaseAuth.instance;
+  String email = '';
+  String password = '';
   bool _passwordVisible = false;
 
   void _togglePasswordVisible() {
@@ -57,6 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 //todo: use validator
 
                 TextFormField(
+                  onChanged: (value) {
+                    email = value;
+                  },
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -66,6 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
                 //todo: use validator
                 TextFormField(
+                  onChanged: (value) {
+                    password = value;
+                  },
                   obscureText: _passwordVisible,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -99,13 +110,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            PrimaryButton(onClick: () {
-              //todo: add authentication
-              // navigate to Home and remove all screens from stack - make Home
-              // the bottom/base stack
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  kHomeScreen, (route) => false);
-
+            PrimaryButton(
+                onClick: () async {
+              //todo: add validation before signing up etc
+              try {
+                await _auth.signInWithEmailAndPassword(email: email, password: password);
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(kHomeScreen, (route) => false);
+              } catch (e) {
+                // handle error: show error message or whatever
+                print(e);
+              }
             }, text: 'Log In'),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

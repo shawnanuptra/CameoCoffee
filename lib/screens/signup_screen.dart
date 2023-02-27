@@ -1,6 +1,7 @@
 import 'package:coffee_cameo/components/Buttons.dart';
 import 'package:coffee_cameo/util/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -10,8 +11,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final _auth = FirebaseAuth.instance;
+
   bool _passwordVisible = false;
   bool _confirmPasswordVisible = false;
+
+  String email = '';
+  String password = '';
+  String confPassword = '';
 
   void _togglePasswordVisible() {
     setState(() {
@@ -31,7 +38,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: kBgColor,
       body: Padding(
         padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height / 10,
+            vertical: MediaQuery
+                .of(context)
+                .size
+                .height / 10,
             horizontal: 50.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -44,9 +54,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       TextSpan(
                           text: 'Excited to work with you!',
-                          style: Theme.of(context).textTheme.headlineSmall),
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headlineSmall),
                     ],
-                    style: Theme.of(context).textTheme.headlineLarge),
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .headlineLarge),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -54,6 +70,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Column(
               children: [
                 TextFormField(
+                  onChanged: (value) {
+                    email = value;
+                  },
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -63,6 +82,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 10),
                 //todo: use validator
                 TextFormField(
+                  onChanged: (value) {
+                    password = value;
+                  },
                   obscureText: _passwordVisible,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -74,12 +96,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       icon: Icon(_passwordVisible
                           ? Icons.visibility
                           : Icons.visibility_off),
-                      color: Theme.of(context).primaryColor,
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
                     ),
                   ),
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
+                  onChanged: (value) {
+                    confPassword = value;
+                  },
                   obscureText: _confirmPasswordVisible,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -91,7 +118,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       icon: Icon(_confirmPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off),
-                      color: Theme.of(context).primaryColor,
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
                     ),
                   ),
                 ),
@@ -99,9 +128,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
 
             PrimaryButton(
-                onClick: () {
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(kHomeScreen, (route) => false);
+                onClick: () async {
+                  //todo: add validation before signing up etc
+                  try {
+                    await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                    Navigator.of(context)
+                        .pushNamedAndRemoveUntil(kHomeScreen, (route) => false);
+                  } catch (e) {
+                    // handle error: show error message or whatever
+                    print(e);
+                  }
                 },
                 text: 'Sign Up'),
             Row(
