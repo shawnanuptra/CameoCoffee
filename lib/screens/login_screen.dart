@@ -1,5 +1,6 @@
 import 'package:coffee_cameo/components/Buttons.dart';
 import 'package:coffee_cameo/util/constants.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
-  bool _passwordVisible = false;
+  bool _passwordVisible = true;
 
   void _togglePasswordVisible() {
     setState(() {
@@ -62,8 +63,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
                       }
+                      if (!EmailValidator.validate(value)) {
+                        return 'Please enter a correct email';
+                      }
                       return null;
-                      // else if ()
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
@@ -83,7 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         return 'Please enter your password';
                       }
                       return null;
-                      // else if ()
                     },
                     obscureText: _passwordVisible,
                     enableSuggestions: false,
@@ -120,8 +122,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               PrimaryButton(
                   onClick: () async {
-                    //todo: add validation before signing up etc
-                    //todo: add proper messages
                     if (_formKey.currentState!.validate()) {
                       try {
                         await _auth.signInWithEmailAndPassword(
@@ -132,44 +132,40 @@ class _LoginScreenState extends State<LoginScreen> {
                         switch (e.code) {
                           // email is in wrong format
                           case 'invalid-email':
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Please enter a correct email'),
-                                  backgroundColor: Theme.of(context).colorScheme.error,
-                                ));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('Please enter a correct email.'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                            ));
                             break;
-                            // wrong password for the email
+                          // wrong password for the email
                           case 'wrong-password':
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Wrong password. Retry.'),
-                                  backgroundColor: Theme.of(context).colorScheme.error,
-                                ));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('Password incorrect.'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                            ));
                             break;
-                            // email not found
+                          // email not found
                           case 'user-not-found':
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('No user found with this email. Sign up instead?'),
-                                  backgroundColor: Theme.of(context).colorScheme.error,
-                                ));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                                  'No user is found with this email. Check if email entered is correct, or sign up a new account.'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                            ));
                             break;
-                            // if there's connection problem
+                          // if there's connection problem
                           case 'network-failed':
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Network has failed, please try again.'),
-                                  backgroundColor: Theme.of(context).colorScheme.error,
-                                ));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text('Connection problem, please try again later.'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                            ));
 
-                                break;
-
-
+                            break;
                         }
-                        if (e.code == 'invalid-email') {}
-
-                        // handle error: show error message or whatever
-
                         print(e);
                       }
                     }
