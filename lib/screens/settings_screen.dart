@@ -23,6 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            Text('My Profile', style: Theme.of(context).textTheme.headlineLarge,),
              PrimaryButton(
                 onClick: () {
                   _auth.signOut();
