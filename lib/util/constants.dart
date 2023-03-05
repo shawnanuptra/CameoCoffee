@@ -10,6 +10,7 @@ const double kButtonMargin = 5;
 const double kButtonHeight = 50;
 
 const kScaffoldPadding = EdgeInsets.symmetric(vertical: 8.0, horizontal: 50.0);
+const kMainScreenHorizontalPadding = 30.0;
 
 const kWelcomeScreen = '/welcome';
 const kHomeScreen = '/home';

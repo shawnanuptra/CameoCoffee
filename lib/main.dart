@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
 
         textTheme: const TextTheme(
           // for titles/logo work
+          bodySmall: TextStyle(color: kPrimaryColor),
           displaySmall: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
