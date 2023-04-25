@@ -1,26 +1,23 @@
+import 'package:coffee_cameo/model/item_class.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../util/constants.dart';
 
 class MenuItem extends StatelessWidget {
-  const MenuItem({
+  MenuItem({
     Key? key,
-    required this.name,
-    required this.description,
-    required this.price,
+    required this.item,
+    this.onClick,
   }) : super(key: key);
 
-  final String name;
-  final String description;
-  final double price;
+  final Item item;
+  void Function()? onClick;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        // todo: add menu item screen
-      },
+      onTap: onClick,
       child: Padding(
         padding: const EdgeInsets.symmetric(
             horizontal: kMainScreenHorizontalPadding, vertical: 5),
@@ -45,13 +42,13 @@ class MenuItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${name}'),
+                      Text('${item.name}'),
                       Text(
-                          '${NumberFormat.simpleCurrency(locale: 'en-GB').format(price)}'),
+                          '${NumberFormat.simpleCurrency(locale: 'en-GB').format(item.price)}'),
                     ],
                   ),
                   Row(
-                    children: [Text('${description}')],
+                    children: [Text('${item.description}')],
                   )
                 ],
               ),
@@ -109,7 +106,7 @@ class MenuCategory extends StatelessWidget {
         style: Theme.of(context).textTheme.bodySmall,
       ),
       decoration: BoxDecoration(
-        // color: Theme.of(context).colorScheme.background,
+          // color: Theme.of(context).colorScheme.background,
           borderRadius: const BorderRadius.horizontal(
             left: Radius.circular(15),
             right: Radius.circular(15),

@@ -1,9 +1,10 @@
+import 'package:coffee_cameo/screens/item_screen.dart';
 import 'package:coffee_cameo/util/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../components/botnavbar.dart';
 import '../components/menu_components.dart';
+import '../model/item_class.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -15,18 +16,30 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   final int _selectedIndex = 2;
 
+  late final List<Item> items = [
+    Item('Espresso1', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso2', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BotNavBar(selectedIndex: _selectedIndex),
       body: SafeArea(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           children: [
             // Title and search
             Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,7 +125,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
                   // OTHER CATEGORIES
                   Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Title
@@ -125,21 +138,22 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                       ),
 
-                      // List of Items
-                      MenuItem(
-                        name: 'Espresso',
-                        price: 2,
-                        description: 'Description of espresso',
-                      ),
-                      MenuItem(
-                        name: 'Espresso',
-                        price: 2,
-                        description: 'Description of espresso',
-                      ),
-                      MenuItem(
-                        name: 'Espresso',
-                        price: 2,
-                        description: 'Description of espresso',
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: items.length,
+                        itemBuilder: (context, index) {
+                          return MenuItem(
+                            item: items[index],
+                            onClick: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ItemScreen(items[index])));
+                            },
+                          );
+                        },
                       ),
                     ],
                   )

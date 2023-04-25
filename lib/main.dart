@@ -1,6 +1,7 @@
 import 'package:coffee_cameo/firebase_options.dart';
 import 'package:coffee_cameo/screens/activity_screen.dart';
 import 'package:coffee_cameo/screens/home_screen.dart';
+import 'package:coffee_cameo/screens/item_screen.dart';
 import 'package:coffee_cameo/screens/login_screen.dart';
 import 'package:coffee_cameo/screens/menu_screen.dart';
 import 'package:coffee_cameo/screens/rewards_screen.dart';
