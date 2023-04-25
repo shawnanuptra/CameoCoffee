@@ -13,7 +13,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final int _selectedIndex = 3;
+  final int _selectedIndex = 4;
   final _auth = FirebaseAuth.instance;
 
   @override

@@ -13,7 +13,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final int _selectedIndex = 1;
+  final int _selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {

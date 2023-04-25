@@ -24,16 +24,21 @@ class BotNavBar extends StatelessWidget {
             label: 'Home'),
         BottomNavigationBarItem(
             icon: (_selectedIndex == 1)
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border_outlined),
+            label: 'Rewards'),
+        BottomNavigationBarItem(
+            icon: (_selectedIndex == 2)
                 ? const Icon(Icons.coffee)
                 : const Icon(Icons.coffee_outlined),
             label: 'Menu'),
         BottomNavigationBarItem(
-            icon: (_selectedIndex == 2)
+            icon: (_selectedIndex == 3)
                 ? const Icon(Icons.receipt)
                 : const Icon(Icons.receipt_outlined),
             label: 'Activity'),
         BottomNavigationBarItem(
-            icon: (_selectedIndex == 3)
+            icon: (_selectedIndex == 4)
                 ? const Icon(Icons.settings)
                 : const Icon(Icons.settings_outlined),
             label: 'Settings'),
@@ -47,14 +52,18 @@ class BotNavBar extends StatelessWidget {
             break;
           // Menu
           case 1:
+            Navigator.of(context).pushReplacementNamed(kRewardsScreen);
+            break;
+            // Menu
+          case 2:
             Navigator.of(context).pushReplacementNamed(kMenuScreen);
             break;
           // Activity
-          case 2:
+          case 3:
             Navigator.of(context).pushReplacementNamed(kActivityScreen);
             break;
           // Setting
-          case 3:
+          case 4:
             Navigator.of(context).pushReplacementNamed(kSettingsScreen);
             break;
         }

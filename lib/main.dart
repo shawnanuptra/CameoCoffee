@@ -3,6 +3,7 @@ import 'package:coffee_cameo/screens/activity_screen.dart';
 import 'package:coffee_cameo/screens/home_screen.dart';
 import 'package:coffee_cameo/screens/login_screen.dart';
 import 'package:coffee_cameo/screens/menu_screen.dart';
+import 'package:coffee_cameo/screens/rewards_screen.dart';
 import 'package:coffee_cameo/screens/settings_screen.dart';
 import 'package:coffee_cameo/screens/signup_screen.dart';
 import 'package:coffee_cameo/screens/welcome_screen.dart';
@@ -65,6 +66,9 @@ class MyApp extends StatelessWidget {
           case "/menu":
             return MaterialPageRoute(
                 builder: (context) => const MenuScreen());
+          case kRewardsScreen:
+            return MaterialPageRoute(
+                builder: (context) => const RewardsScreen());
           case "/activity":
             return MaterialPageRoute(
                 builder: (context) => const ActivityScreen());

@@ -17,6 +17,7 @@ const kHomeScreen = '/home';
 const kSignUpScreen = '/signup';
 const kLogInScreen = '/login';
 const kMenuScreen = '/menu';
+const kRewardsScreen = '/rewards';
 const kActivityScreen = '/activity';
 const kSettingsScreen = '/settings';
 

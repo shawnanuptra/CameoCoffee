@@ -1,17 +1,22 @@
-import 'package:coffee_cameo/util/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../components/botnavbar.dart';
+import '../util/constants.dart';
 
-class ActivityScreen extends StatefulWidget {
-  const ActivityScreen({Key? key}) : super(key: key);
+class RewardsScreen extends StatefulWidget {
+  const RewardsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ActivityScreen> createState() => _ActivityScreenState();
+  State<RewardsScreen> createState() => _RewardsScreenState();
 }
 
-class _ActivityScreenState extends State<ActivityScreen> {
-  final int _selectedIndex = 3;
+class _RewardsScreenState extends State<RewardsScreen> {
+  final int _selectedIndex = 1;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
               vertical: 10, horizontal: kMainScreenHorizontalPadding),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-
             children: [
               Align(
                 alignment: Alignment.topLeft,
@@ -95,20 +99,31 @@ class _ActivityScreenState extends State<ActivityScreen> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Scan to earn rewards!',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(fontWeight: FontWeight.bold),
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Scan to earn rewards!',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              // SizedBox(height: 10),
+                              Expanded(
+                                  child: Icon(Icons.qr_code_2_outlined,
+                                      size: 250)),
+                            ],
                           ),
-                          SizedBox(height: 10),
-                          Icon(Icons.qr_code, size: 300),
-                        ],
+                        ),
                       ),
                     )
                   ],
