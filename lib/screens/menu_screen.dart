@@ -20,13 +20,6 @@ class _MenuScreenState extends State<MenuScreen> {
     Item('Espresso1', 'description', 3, 'category', 'itemSettings'),
     Item('Espresso2', 'description', 3, 'category', 'itemSettings'),
     Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
-    Item('Espresso3', 'description', 3, 'category', 'itemSettings'),
   ];
 
   @override

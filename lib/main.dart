@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontFamily: kTitleFont,
           ),
-          headlineLarge: TextStyle(fontWeight: FontWeight.bold),
+          headlineLarge: TextStyle( fontFamily: kTitleFont),
         ).apply(bodyColor: Colors.black87, displayColor: Colors.black87),
 
         // primarySwatch: Colors.brown,
