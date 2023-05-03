@@ -1,5 +1,6 @@
 import 'package:coffee_cameo/util/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
 import '../model/item_class.dart';
@@ -90,7 +91,13 @@ class _ItemScreenState extends State<ItemScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        label: Text('Add Item', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white),),
+        label: Text(
+          'Add Item',
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(color: Colors.white),
+        ),
         onPressed: () {},
       ),
       body: SafeArea(
@@ -105,11 +112,9 @@ class _ItemScreenState extends State<ItemScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AspectRatio(
-                      aspectRatio: 1 / 1,
-                      child: Container(
-                        color: Colors.black,
-                        width: double.infinity,
-                      )),
+                    aspectRatio: 1 / 1,
+                    child: SvgPicture.asset('assets/espresso.svg'),
+                  ),
                   Text(widget.item.description),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -128,14 +133,19 @@ class _ItemScreenState extends State<ItemScreen> {
                             Container(
                               height: 75,
                               width: 75,
-                              decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary.withOpacity(0.5), borderRadius: BorderRadius.all(Radius.circular(15))),
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary
+                                      .withOpacity(0.5),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
                             ),
                             ScrollSnapList(
                                 itemBuilder: _buildListItem,
                                 itemCount: data.length,
                                 itemSize: 75,
                                 onItemFocus: _onItemFocus),
-
                           ],
                         ),
                       ),

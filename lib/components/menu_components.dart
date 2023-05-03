@@ -1,7 +1,7 @@
 import 'package:coffee_cameo/model/item_class.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../util/constants.dart';
 
 class MenuItem extends StatelessWidget {
@@ -32,6 +32,7 @@ class MenuItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: Colors.grey,
               ),
+              child: SvgPicture.asset('assets/mogul-monday.svg'),
             ),
             const SizedBox(width: 10),
             Expanded(
