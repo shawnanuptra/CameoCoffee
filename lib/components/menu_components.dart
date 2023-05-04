@@ -1,23 +1,29 @@
-import 'package:coffee_cameo/model/item_class.dart';
+import 'package:coffee_cameo/model/menu_item_model.dart';
+import 'package:coffee_cameo/util/extension.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+
+import '../screens/item_screen.dart';
 import '../util/constants.dart';
 
-class MenuItem extends StatelessWidget {
-  MenuItem({
+class MenuListTile extends StatelessWidget {
+  MenuListTile({
     Key? key,
     required this.item,
     this.onClick,
   }) : super(key: key);
 
-  final Item item;
+  final MenuItem item;
   void Function()? onClick;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onClick,
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ItemScreen(item)));
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(
             horizontal: kMainScreenHorizontalPadding, vertical: 5),
@@ -26,14 +32,18 @@ class MenuItem extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.,
           children: [
             Container(
-              width: 100,
-              height: 100,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Colors.grey,
-              ),
-              child: SvgPicture.asset('assets/mogul-monday.svg'),
-            ),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    border: Border.all(
+                      width: 1,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    color: Colors.yellow[100]),
+                child: Center(
+                    child: SvgPicture.asset(
+                        'assets/${item.name.toKebabCase()}.svg'))),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -43,13 +53,23 @@ class MenuItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${item.name}'),
+                      Flexible(
+                        child: Text('${item.name}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(fontSize: 18)),
+                      ),
                       Text(
                           '${NumberFormat.simpleCurrency(locale: 'en-GB').format(item.price)}'),
                     ],
                   ),
                   Row(
-                    children: [Text('${item.description}')],
+                    children: [
+                      Flexible(
+                          child: Text('${item.description}',
+                              style: Theme.of(context).textTheme.bodySmall))
+                    ],
                   )
                 ],
               ),
@@ -62,9 +82,9 @@ class MenuItem extends StatelessWidget {
 }
 
 class SpecialCard extends StatelessWidget {
-  const SpecialCard({Key? key, required this.text}) : super(key: key);
+  const SpecialCard({Key? key, required this.item}) : super(key: key);
 
-  final String text;
+  final MenuItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +96,7 @@ class SpecialCard extends StatelessWidget {
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Text(
-            text,
+            item.name,
             textAlign: TextAlign.end,
             style: Theme.of(context).textTheme.bodySmall,
           ),

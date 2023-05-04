@@ -1,3 +1,4 @@
+import 'package:coffee_cameo/model/menu_item_model.dart';
 import 'package:coffee_cameo/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +9,7 @@ import '../model/item_class.dart';
 class ItemScreen extends StatefulWidget {
   const ItemScreen(this.item, {Key? key}) : super(key: key);
 
-  final Item item;
+  final MenuItem item;
 
   @override
   State<ItemScreen> createState() => _ItemScreenState();

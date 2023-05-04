@@ -24,3 +24,6 @@ const kSettingsScreen = '/settings';
 // Font names
 const kBodyFont = 'Quattrocento';
 const kTitleFont = 'DMSerifDisplay';
+
+// Firestore Collection of the menu
+const kMenuCollection = 'items';
