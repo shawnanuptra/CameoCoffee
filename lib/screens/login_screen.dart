@@ -158,8 +158,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           // if there's connection problem
                           case 'network-failed':
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content:
-                                  Text('Connection problem, please try again later.'),
+                              content: Text(
+                                  'Connection problem, please try again later.'),
                               backgroundColor:
                                   Theme.of(context).colorScheme.error,
                             ));

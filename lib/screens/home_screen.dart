@@ -101,7 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Theme.of(context).textTheme.headlineSmall)
                             ]),
                       ),
-
                     ],
                   ),
                 ),

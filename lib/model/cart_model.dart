@@ -4,6 +4,4 @@ import 'package:flutter/material.dart';
 // model for cart/bag
 class CartModel extends ChangeNotifier {
   final List<MenuItem> _list = [];
-
-
 }

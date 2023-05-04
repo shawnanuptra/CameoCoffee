@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '802773261987',
     projectId: 'cameo-coffee',
     storageBucket: 'cameo-coffee.appspot.com',
-    iosClientId: '802773261987-bnp7o0p49iv6pmd2sdig2m5sj7jm0a5e.apps.googleusercontent.com',
+    iosClientId:
+        '802773261987-bnp7o0p49iv6pmd2sdig2m5sj7jm0a5e.apps.googleusercontent.com',
     iosBundleId: 'com.example.coffeeCameo',
   );
 }

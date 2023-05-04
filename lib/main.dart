@@ -1,7 +1,6 @@
 import 'package:coffee_cameo/firebase_options.dart';
 import 'package:coffee_cameo/screens/activity_screen.dart';
 import 'package:coffee_cameo/screens/home_screen.dart';
-import 'package:coffee_cameo/screens/item_screen.dart';
 import 'package:coffee_cameo/screens/login_screen.dart';
 import 'package:coffee_cameo/screens/menu_screen.dart';
 import 'package:coffee_cameo/screens/rewards_screen.dart';
@@ -47,7 +46,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontFamily: kTitleFont,
           ),
-          headlineLarge: TextStyle( fontFamily: kTitleFont),
+          headlineLarge: TextStyle(fontFamily: kTitleFont),
         ).apply(bodyColor: Colors.black87, displayColor: Colors.black87),
 
         // primarySwatch: Colors.brown,
@@ -65,8 +64,7 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
                 builder: (context) => const SignUpScreen());
           case "/menu":
-            return MaterialPageRoute(
-                builder: (context) => const MenuScreen());
+            return MaterialPageRoute(builder: (context) => const MenuScreen());
           case kRewardsScreen:
             return MaterialPageRoute(
                 builder: (context) => const RewardsScreen());
@@ -77,8 +75,7 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
                 builder: (context) => const SettingsScreen());
           default:
-            return MaterialPageRoute(
-                builder: (context) => const HomeScreen());
+            return MaterialPageRoute(builder: (context) => const HomeScreen());
         }
       },
       // home: HomeScreen(),

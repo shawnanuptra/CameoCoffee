@@ -50,7 +50,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     Icon(Icons.account_circle_outlined),
                     SizedBox(width: 10),
-                    Text('Profile', style: Theme.of(context).textTheme.headlineSmall,)
+                    Text(
+                      'Profile',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    )
                   ],
                 ),
               ),
@@ -61,7 +64,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     Icon(Icons.receipt),
                     SizedBox(width: 10),
-                    Text('Orders', style: Theme.of(context).textTheme.headlineSmall,)
+                    Text(
+                      'Orders',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    )
                   ],
                 ),
               ),
@@ -72,7 +78,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     Icon(Icons.help_outline),
                     SizedBox(width: 10),
-                    Text('Help', style: Theme.of(context).textTheme.headlineSmall,)
+                    Text(
+                      'Help',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    )
                   ],
                 ),
               ),
@@ -83,7 +92,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     Icon(Icons.info_outline_rounded),
                     SizedBox(width: 10),
-                    Text('About', style: Theme.of(context).textTheme.headlineSmall,)
+                    Text(
+                      'About',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    )
                   ],
                 ),
               ),

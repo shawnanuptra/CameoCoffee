@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 
-import '../model/item_class.dart';
-
 class ItemScreen extends StatefulWidget {
   const ItemScreen(this.item, {Key? key}) : super(key: key);
 

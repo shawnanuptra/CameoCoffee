@@ -13,7 +13,6 @@ class BotNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       items: [
@@ -54,7 +53,7 @@ class BotNavBar extends StatelessWidget {
           case 1:
             Navigator.of(context).pushReplacementNamed(kRewardsScreen);
             break;
-            // Menu
+          // Menu
           case 2:
             Navigator.of(context).pushReplacementNamed(kMenuScreen);
             break;

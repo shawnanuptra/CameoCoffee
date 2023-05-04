@@ -23,7 +23,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
               vertical: 10, horizontal: kMainScreenHorizontalPadding),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-
             children: [
               Align(
                 alignment: Alignment.topLeft,

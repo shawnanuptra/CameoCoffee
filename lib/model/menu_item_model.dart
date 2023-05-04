@@ -8,29 +8,27 @@ class MenuItem {
   bool? special;
   Map<String, dynamic>? itemSettings;
 
-  MenuItem(this.name, this.description, this.category, this.price,
-      this.special,
-      this.itemSettings
-      );
+  MenuItem(this.name, this.description, this.category, this.price, this.special,
+      this.itemSettings);
 
   Map<String, dynamic> toMap() {
     return {
-      'name' : name,
-      'description' : description,
-      'category' : category,
-      'price' : price,
-      'special' : special,
+      'name': name,
+      'description': description,
+      'category': category,
+      'price': price,
+      'special': special,
       'itemSettings': itemSettings
     };
   }
 
-  MenuItem.fromMap(Map<String,dynamic> itemMap)
-    : name = itemMap['name'],
-      description = itemMap['description'],
-      category = itemMap['category'],
-      price = itemMap['price'].toDouble(),
-      special = itemMap['special'],
-      itemSettings = itemMap['itemSettings'];
+  MenuItem.fromMap(Map<String, dynamic> itemMap)
+      : name = itemMap['name'],
+        description = itemMap['description'],
+        category = itemMap['category'],
+        price = itemMap['price'].toDouble(),
+        special = itemMap['special'],
+        itemSettings = itemMap['itemSettings'];
 }
 
 class ItemOptions {
@@ -49,8 +47,4 @@ enum Milk {
   Soy,
 }
 
-enum Syrup {
-  Vanilla,
-  Caramel,
-  Hazelnut
-}
+enum Syrup { Vanilla, Caramel, Hazelnut }
