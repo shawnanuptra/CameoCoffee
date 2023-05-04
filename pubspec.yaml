@@ -42,6 +42,7 @@ dependencies:
   scroll_snap_list: ^0.9.1
   flutter_svg: ^2.0.5
   cloud_firestore: ^4.5.3
+  custom_radio_grouped_button: ^2.2.0
 
 
 flutter_icons:

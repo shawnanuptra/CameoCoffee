@@ -25,3 +25,4 @@ const kTitleFont = 'DMSerifDisplay';
 
 // Firestore Collection of the menu
 const kMenuCollection = 'items';
+const kItemSettingsCollection = 'itemSettings';

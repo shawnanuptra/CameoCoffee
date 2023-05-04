@@ -36,6 +36,7 @@ class MenuScreen extends StatelessWidget {
           if (x!.isNotEmpty) {
             for (var a in x) {
               var item = MenuItem.fromMap(a.data());
+              print(a.data());
               menuItems.add(item);
               categories.add(item.category);
             }
@@ -124,8 +125,6 @@ class MenuScreen extends StatelessWidget {
                                 shrinkWrap: true,
                                 itemCount: specials.length,
                                 itemBuilder: (context, index) {
-                                  print("length: ${specials.length}");
-
                                   return MenuListTile(
                                     item: specials.elementAt(index),
                                     onClick: () {},

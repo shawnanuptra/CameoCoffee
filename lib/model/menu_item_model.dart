@@ -1,12 +1,14 @@
 import 'dart:core';
 
+import 'package:coffee_cameo/model/item_settings_class.dart';
+
 class MenuItem {
   String name;
   String description;
   String category;
   double price;
   bool? special;
-  Map<String, dynamic>? itemSettings;
+  ItemSettings itemSettings;
 
   MenuItem(this.name, this.description, this.category, this.price, this.special,
       this.itemSettings);
@@ -18,7 +20,7 @@ class MenuItem {
       'category': category,
       'price': price,
       'special': special,
-      'itemSettings': itemSettings
+      'itemSettings': itemSettings.toMap()
     };
   }
 
@@ -28,7 +30,7 @@ class MenuItem {
         category = itemMap['category'],
         price = itemMap['price'].toDouble(),
         special = itemMap['special'],
-        itemSettings = itemMap['itemSettings'];
+        itemSettings = ItemSettings.fromMap(itemMap['itemSettings']);
 }
 
 class ItemOptions {
@@ -37,14 +39,3 @@ class ItemOptions {
   //
   // String
 }
-
-enum Milk {
-  Whole,
-  Skinny,
-  Oat,
-  Coconut,
-  Almond,
-  Soy,
-}
-
-enum Syrup { Vanilla, Caramel, Hazelnut }
