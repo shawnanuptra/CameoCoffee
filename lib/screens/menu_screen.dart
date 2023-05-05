@@ -17,6 +17,7 @@ class MenuScreen extends StatelessWidget {
 
     final List<MenuItem> menuItems = [];
     final Set<String> categories = {};
+
     Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
         fetchMenu() async {
       var a = await db
@@ -24,6 +25,23 @@ class MenuScreen extends StatelessWidget {
           .get()
           .then((event) => event.docs);
       return a;
+    }
+
+    List<Widget> _getCatWidgets(Set<String> categories) {
+      List<Widget> catWidgets = <Widget>[
+        SizedBox(width: 10),
+        MenuCategory(title: 'All'), // added manually bc no Special category
+        SizedBox(width: 5),
+        MenuCategory(title: 'Special'),
+      ];
+
+      categories.forEach((element) {
+        catWidgets.add(SizedBox(width: 5));
+        catWidgets.add(MenuCategory(title: element.capitalizeWord()));
+      });
+      catWidgets.add(SizedBox(width: 10));
+
+      return catWidgets;
     }
 
     return FutureBuilder<List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
@@ -70,23 +88,26 @@ class MenuScreen extends StatelessWidget {
                     ),
                   ),
 
-                  // categories heading
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                  // Categories heading
+                  SizedBox(
+                    height: 40,
                     child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Divider(
                           thickness: 1,
                           height: 2,
                           color: Colors.black87,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Row(
+                        Expanded(
+                          child: ListView(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
                             children: [
-                              MenuCategory(title: 'Special'),
-                              MenuCategory(title: 'Special'),
-                              MenuCategory(title: 'Special'),
+                              Row(
+                                children: _getCatWidgets(categories),
+                              ),
                             ],
                           ),
                         ),
@@ -106,31 +127,35 @@ class MenuScreen extends StatelessWidget {
                       shrinkWrap: true,
                       children: [
                         // SPECIALS
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: kMainScreenHorizontalPadding),
-                              child: Text(
-                                'Specials',
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: kMainScreenHorizontalPadding,
+                                ),
+                                child: Text(
+                                  'Specials',
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
+                                ),
                               ),
-                            ),
-                            ListView.builder(
-                                physics: ClampingScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: specials.length,
-                                itemBuilder: (context, index) {
-                                  return MenuListTile(
-                                    item: specials.elementAt(index),
-                                    onClick: () {},
-                                  );
-                                }),
-                          ],
+                              ListView.builder(
+                                  physics: ClampingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: specials.length,
+                                  itemBuilder: (context, index) {
+                                    return MenuListTile(
+                                      item: specials.elementAt(index),
+                                      onClick: () {},
+                                    );
+                                  }),
+                            ],
+                          ),
                         ),
 
                         // CATEGORIES AUTO GENERATE AND CHILDREN
@@ -140,37 +165,42 @@ class MenuScreen extends StatelessWidget {
                             shrinkWrap: true,
                             itemBuilder: (context, catIndex) {
                               String category = categories.elementAt(catIndex);
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal:
-                                            kMainScreenHorizontalPadding),
-                                    child: Text(
-                                      category.capitalizeWord(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall,
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal:
+                                              kMainScreenHorizontalPadding),
+                                      child: Text(
+                                        category.capitalizeWord(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineSmall,
+                                      ),
                                     ),
-                                  ),
-                                  ListView.builder(
-                                      itemCount: menuItems
-                                          .where((e) => e.category == category)
-                                          .toSet()
-                                          .length,
-                                      shrinkWrap: true,
-                                      physics: const ClampingScrollPhysics(),
-                                      itemBuilder: (context, itemIndex) {
-                                        return MenuListTile(
-                                            item: menuItems
-                                                .where((e) =>
-                                                    e.category == category)
-                                                .toSet()
-                                                .elementAt(itemIndex));
-                                      }),
-                                ],
+                                    ListView.builder(
+                                        itemCount: menuItems
+                                            .where(
+                                                (e) => e.category == category)
+                                            .toSet()
+                                            .length,
+                                        shrinkWrap: true,
+                                        physics: const ClampingScrollPhysics(),
+                                        itemBuilder: (context, itemIndex) {
+                                          return MenuListTile(
+                                              item: menuItems
+                                                  .where((e) =>
+                                                      e.category == category)
+                                                  .toSet()
+                                                  .elementAt(itemIndex));
+                                        }),
+                                  ],
+                                ),
                               );
                             }),
                       ],
